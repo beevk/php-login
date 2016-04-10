@@ -3,12 +3,16 @@
 
 	//echo config::get('mysql/host');
 
-	//$user = db::getInstance()->query("SELECT * FROM users WHERE username = ?", array('Billy'));
-	$user = db::getInstance()->get('users', array('username', '=', 'chandra'));
+	//$user = db::getInstance()->query("SELECT * FROM users");
+	$user = db::getInstance()->get('users', array('username', '=', 'alex'));
 	if(!$user->count()){
 		echo "No User!<br />";
 	}
 	else{
-		echo "OK!<br />";
+		//echo "OK!<br />";
+		//foreach($user->results() as $user){
+		//	echo $user->username . "<br />";
+		echo $user->first()->username;
+		}
 	}
  ?>
