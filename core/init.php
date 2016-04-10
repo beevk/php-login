@@ -22,3 +22,4 @@
 	});
 
 	require_once 'functions/sanitize.php';
+?>
