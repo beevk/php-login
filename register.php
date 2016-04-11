@@ -1,3 +1,29 @@
+<?php 
+	require_once 'core/init.php';
+
+	if(input::exists()){
+		//echo input::get('username');
+		$validate = new Validate->check($_POST, array(
+			'username' => array(
+				'required' => true,
+				'min' => 5,
+				'max' => 20,
+				'unique' => 'users'
+			);
+			'password' => array(
+				'required' => true,
+				'min' => 6,
+			);
+			'rePassword' => array(
+				'required' => true,
+				'matches' => 'password'
+			);
+			'name' => array(
+				
+			);
+		));
+	}
+ ?>
 <form action="" method="post">
 	<div class="field">
 		<label for="username">Username</label>
