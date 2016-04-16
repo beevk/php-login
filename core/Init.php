@@ -9,11 +9,12 @@
 				'db' => 'login'
 		),
 		'remember' => array(
-			'cookie_name' => 'hash',
-			'cookie_expiry' => 604800
+			'cookieName' => 'hash',
+			'cookieExpiry' => 604800
 		),
 		'session' => array(
-			'session_name' => 'user'
+			'sessionName' => 'user',
+			'tokenName' => 'token'
 		)
 	);
 
@@ -21,5 +22,5 @@
 		require_once 'classes/' . $class . '.php';
 	});
 
-	require_once 'functions/sanitize.php';
+	require_once 'functions/Sanitize.php';
 ?>
