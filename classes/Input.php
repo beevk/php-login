@@ -14,7 +14,7 @@
 					break;
 			}
 		}
-		//Return the user submitted value
+		//Return the user submitted value so they don't have to fill complete form in case of errors.
 		public static function get($item){
 			if(isset($_POST[$item])){
 				return $_POST[$item];

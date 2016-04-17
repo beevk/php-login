@@ -3,9 +3,8 @@
 
 	if(Input::exists()){
 		if(Token::check(Input::get('token'))){
-			//echo input::get('username');
 			//Next command doesn't execute hence preventing XSS
-			echo "I've been run";
+			//echo "I've been run";
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
 				'username' => array(
