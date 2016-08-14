@@ -48,7 +48,7 @@
 						'groups' => 1
 						));
 					Session::flash('home', 'You have been registered successully!');
-					header('Location: Index.php');
+					Redirect::to('Index.php');
 
 				}
 				catch(Exception $e){
