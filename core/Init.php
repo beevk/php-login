@@ -6,7 +6,7 @@
 				'host' => '127.0.0.1',
 				'username' => 'root',
 				'password' => 'honeyhive',
-				'db' => 'login'
+				'db' => 'lr'
 		),
 		'remember' => array(
 			'cookieName' => 'hash',
