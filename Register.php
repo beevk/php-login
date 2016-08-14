@@ -23,13 +23,37 @@
 				),
 				'name' => array(
 					'required' => true,
-					'min' => 2,
+					'min' => 4,
 					'max' => 50
 				),
 			));
 
 			if($validation->passed()){
-				echo "Passed";
+				//echo "Passed";
+				//Session::flash('success', 'You have registered successully!');
+				//header('Location: Index.php');
+				$user = new User();
+				$salt = Hash::salt(32);
+
+
+
+				try{
+
+					$user->create(array(
+						'username' => Input::get('username'),
+						'password' => Hash::make(Input::get('password'), $salt),
+						'salt' => $salt,
+						'name' => Input::get('name'),
+						'joined' => date('Y-m-d H:i:s'),
+						'groups' => 1
+						));
+					Session::flash('home', 'You have been registered successully!');
+					header('Location: Index.php');
+
+				}
+				catch(Exception $e){
+					die($e->getMessage());
+				}
 			}
 			else{
 				foreach($validation->errors() as $error){
@@ -42,7 +66,7 @@
 <form action="" method="post">
 	<div class="field">
 		<label for="username">Username</label>
-		<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off"></input>
+		<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off" autofocus></input>
 	</div>
 	<div class="field">
 		<label for="password">Insert password:</label>
