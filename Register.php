@@ -34,8 +34,8 @@
 				//header('Location: Index.php');
 				$user = new User();
 				$salt = Hash::salt(32);
-
-
+				echo $salt . '<br />';
+				echo Hash::make(Input::get('password'), $salt) . '<br />';
 
 				try{
 
@@ -47,6 +47,7 @@
 						'joined' => date('Y-m-d H:i:s'),
 						'groups' => 1
 						));
+					
 					Session::flash('home', 'You have been registered successully!');
 					Redirect::to('Index.php');
 
