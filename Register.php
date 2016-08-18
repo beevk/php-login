@@ -67,22 +67,22 @@
 <form action="" method="post">
 	<div class="field">
 		<label for="username">Username</label>
-		<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off" autofocus></input>
+		<input type="text" name="username" id="username" value="<?php echo escape(Input::get('username')); ?>" autocomplete="off" autofocus>
 	</div>
 	<div class="field">
 		<label for="password">Insert password:</label>
-		<input type="password" name="password"></input>
+		<input type="password" name="password">
 	</div>
 	<div class="field">
 		<label for="rePassword">Insert password again:</label>
-		<input type="password" name="rePassword" ></input>
+		<input type="password" name="rePassword" >
 	</div>
 	<div class="field">
 		<label for="name">Insert name:</label>
-		<input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" id="name"></input>
+		<input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" id="name">
 	</div>
-	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>"></input>
+	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 
-	<input type="submit" value="Register"></input>
+	<input type="submit" value="Register">
 
 </form>

@@ -60,6 +60,7 @@
 				$user = $this->find($username);	
 
 				if($user){
+					
 					if($this->data()->password === Hash::make($password, $this->data()->salt)) {
 						Session::put($this->_sessionName, $this->data()->id);
 
@@ -95,6 +96,16 @@
 			$this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 			Session::delete($this->_sessionName);
 			Cookie::delete($this->_cookieName);
+		}
+
+		public function update($fields = array(), $id = null) {
+			if(!$id && $this->isLoggedIn()) {
+				$id = $this->data()->id;
+			}
+
+			if(!$this->_db->update('users', $id, $fields)) {
+				throw new Exception('There was a problem Updating!');
+			}
 		}
 
 		public function data() {

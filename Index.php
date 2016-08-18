@@ -22,6 +22,8 @@
         ?>
         <p> Welcome <a href="#"> <?php echo escape($user->data()->username); ?></a>!</p>
         <ul>
+            <li><a href = 'Update.php'> Update Details</a></li>
+            <li><a href = 'ChangePassword.php'> Change password </a></li>
             <li><a href = 'Logout.php'> Log out</a></li>
         </ul>
     
