@@ -6,8 +6,8 @@
 		}
 
 		//We add salt(random) to the original password before encoding it with Hash (which adds extra layer of security)
-		public static function salt($len) {
-			return mcrypt_create_iv($len);
+		public static function salt($length) {
+			return mcrypt_create_iv($length);
 		}
 
 		public static function unique() {

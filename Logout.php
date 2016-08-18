@@ -5,4 +5,3 @@
 	$user->logout();
 
 	Redirect::to('Index.php');
- ?>

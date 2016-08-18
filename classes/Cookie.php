@@ -8,8 +8,9 @@
 			return $_COOKIE[$name];
 		}
 
+		//Cookie needs to be reset to null value instead of  unsetting it.
 		public static function put($name, $value, $expiry) {
-			if(setcookie($name, $value, time() + $expiry, '/')) {
+			if(setcookie($name, $value, time() + $expiry, "/")) {
 				return true;
 			}
 			return false;

@@ -20,7 +20,7 @@
     if($user->isLoggedIn()) {
         //echo "Logged in";
         ?>
-        <p> <a href="#"> <?php echo escape($user->data()->username); ?></a>!</p>
+        <p> Welcome <a href="#"> <?php echo escape($user->data()->username); ?></a>!</p>
         <ul>
             <li><a href = 'Logout.php'> Log out</a></li>
         </ul>
@@ -30,4 +30,3 @@
     else{
         echo "<p>You need to <a href='Login.php'>Login</a> or <a href='Register.php'>register</a> </p>";
     }
- ?>

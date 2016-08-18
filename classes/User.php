@@ -51,9 +51,8 @@
 		}
 
 		public function login($username = null, $password = null, $remember = false){
-			
-
-			if(!username && !password && $this->exists()) {
+		
+			if(!$username && !$password && $this->exists()) {
 				//Log user in
 				Session::put($this->_sessionName, $this->data()->id);
 			}
@@ -66,11 +65,12 @@
 
 						if($remember){
 							//To check if it's stored in DB
+							$hash = Hash::unique();
+							//Check inside our DB
 							$hashCheck = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
 
 							if(!$hashCheck->count()) {
-								//Generate new hash to stoere in DB
-								$hash = Hash::unique();
+								//Generate new hash to stoere in DB	
 								$this->_db->insert('users_session', array(
 									'user_id' => $this->data()->id,
 									'hash' => $hash
@@ -91,7 +91,10 @@
 		}
 
 		public function logout() {
+			//Remove from DB, delete cookie and session
+			$this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 			Session::delete($this->_sessionName);
+			Cookie::delete($this->_cookieName);
 		}
 
 		public function data() {
@@ -106,4 +109,3 @@
 			return $this->_isLoggedIn;
 		}
 	} 
-?>
