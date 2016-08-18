@@ -11,7 +11,7 @@
 		}
 
 		public static function unique() {
-			return self::make(usiqid());
+			return self::make(uniqid());
 		}
 	}
  ?> 

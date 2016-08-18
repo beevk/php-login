@@ -10,8 +10,10 @@
 				));
 			if($validation->passed()){
 				//logs user in
+
+				$remember = (Input::get('remember') === 'on') ? true :  false;
 				$user = new User();
-				$login = $user->login(Input::get('username'), Input::get('password'));
+				$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
 				if($login){
 					//echo 'Success!';
@@ -33,11 +35,17 @@
 	<div class="field">
 		<label for="username"> Username </label>
 		<input type="text" name="username" id="username" autocomplete="off">
-	</div>
+	</div><br />
 	<div class="field">
 		<label for="password"> Password </label>
 		<input type="password" name="password" id="password" autocomplete="off">
 	</div>
+	<div class="field">
+		<label for="remember">
+			<input type="checkbox" name="remember" id="remember"> Remember Me
+		</label>
+	</div>
+
 	<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	<input type="submit" name="submit" value="log in">
 </form>
