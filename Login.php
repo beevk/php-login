@@ -14,7 +14,8 @@
 				$login = $user->login(Input::get('username'), Input::get('password'));
 
 				if($login){
-					echo 'Success!';
+					//echo 'Success!';
+					Redirect::to('Index.php');
 				}
 				else{
 					echo "login failed!";
