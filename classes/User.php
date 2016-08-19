@@ -60,7 +60,8 @@
 				$user = $this->find($username);	
 
 				if($user){
-					
+					echo "DB:" . $this->data()->password . "<br>";
+					echo "New val: " . Hash::make($password, $this->data()->salt) . "<br>";
 					if($this->data()->password === Hash::make($password, $this->data()->salt)) {
 						Session::put($this->_sessionName, $this->data()->id);
 
@@ -118,5 +119,20 @@
 
 		public function isLoggedIn() {
 			return $this->_isLoggedIn;
+		}
+
+		public function hasPermission($key) {
+			$group = $this->_db->get('groups', array('id', '=', $this->data()->groups));
+
+			if($group->count()) {
+				$permissions = json_decode($group->first()->permissions, true);
+				//print_r($permissions);
+
+				if($permissions[$key] == true) {
+					return true;
+				}
+
+			}
+			return false;
 		}
 	} 

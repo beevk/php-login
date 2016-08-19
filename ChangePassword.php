@@ -29,17 +29,21 @@
 			));
 			if($validation->passed()) {
 				//update password
-			
+				//echo "Your plain pwd: " . Input::get('currentPassword') . '<br />';
+				//echo "Current password: " , Hash::make(Input::get('currentPassword'), $user->data()->salt) . "<br />";
+				//echo "DB: " . $user->data()->password;
 				if(Hash::make(Input::get('currentPassword'), $user->data()->salt) !== $user->data()->password) {
 					echo "Your current password is wrong";
 				}
 				else {
 					$salt = Hash::salt(32);
+
 					$user->update(array(
 						'password' => Hash::make(Input::get('currentPassword'), $salt),
 						'salt' => $salt
 					));
 
+					//Session::flash('home', Hash::make(Input::get('currentPassword'), $salt));
 					Session::flash('home', 'Password updated Successfully!');
 					Redirect::to('Index.php');
 				}

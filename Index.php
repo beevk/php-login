@@ -20,7 +20,7 @@
     if($user->isLoggedIn()) {
         //echo "Logged in";
         ?>
-        <p> Welcome <a href="#"> <?php echo escape($user->data()->username); ?></a>!</p>
+        <p> Welcome <a href="Profile.php?user=<?php echo escape($user->data()->username);?>"> <?php echo escape($user->data()->username); ?></a>!</p>
         <ul>
             <li><a href = 'Update.php'> Update Details</a></li>
             <li><a href = 'ChangePassword.php'> Change password </a></li>
@@ -28,7 +28,13 @@
         </ul>
     
     <?php    
+        if($user->hasPermission('admin')) {
+            echo "You are an Administrator!<br />";
+        }
+        if($user->hasPermission('moderator')) {
+            echo "You are an Moderator!<br />";
+        }
     }
     else{
-        echo "<p>You need to <a href='Login.php'>Login</a> or <a href='Register.php'>register</a> </p>";
+        echo "<p>You need to <a href='Login.php'>Login</a> or <a href='Register.php'>Register</a> </p>";
     }
